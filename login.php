@@ -1,3 +1,44 @@
+<?php
+require("const.php");
+
+$con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
+mysql_select_db(DB_NAME) or die("Cannot select DB");
+
+if(isset($_SESSION["session_Username"])){
+    // вывод "Session is set"; // в целях проверки
+    header("Location: intropage.php");
+}
+
+if(isset($_POST["login"])) {
+
+    if (!empty($_POST['Username']) && !empty($_POST['Password'])) {
+        $Username = htmlspecialchars($_POST['Username']);
+        $Password = htmlspecialchars($_POST['Password']);
+        $query = mysql_query("SELECT * FROM customer WHERE username='" . $Username . "' AND password='" . $Password . "'");
+        $numrows = mysql_num_rows($query);
+        if ($numrows != 0) {
+            while ($row = mysql_fetch_assoc($query)) {
+                $dbUsername = $row['Username'];
+                $dbPassword = $row['Password'];
+            }
+            if ($Username == $dbUsername && $Password == $dbPassword) {
+                // старое место расположения
+                //  session_start();
+                $_SESSION['session_Username'] = $Username;
+                /* Перенаправление браузера */
+                header("Location: /intropage.php");
+            }
+        } else {
+            //  $message = "Invalid username or password!";
+
+            echo "Invalid username or password!";
+        }
+    } else {
+        $message = "All fields are required!";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,52 +54,8 @@ body,td,th {
 }
 </style>
 	</head>
-	
-<?php
-	require("const.php");
- 
-	$con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
-	mysql_select_db(DB_NAME) or die("Cannot select DB");
-	?>	 
-	<?php
-	
-	if(isset($_SESSION["session_Username"])){
-	// вывод "Session is set"; // в целях проверки
-	header("Location: intropage.php");
-	}
- 
-	if(isset($_POST["login"])){
- 
-	if(!empty($_POST['Username']) && !empty($_POST['Password'])) {
-	$Username=htmlspecialchars($_POST['Username']);
-	$Password=htmlspecialchars($_POST['Password']);
-	$query =mysql_query("SELECT * FROM delivery WHEREusername='".$Username."' AND password='".$Password."'");
-	$numrows=mysql_num_rows($query);
-	if($numrows!=0)
- {
-while($row=mysql_fetch_assoc($query))
- {
-	$dbUsername=$row['Username'];
-  $dbPassword=$row['Password'];
- }
-  if($Username == $dbUsername && $Password == $dbPassword)
- {
-	// старое место расположения
-	//  session_start();
-	 $_SESSION['session_Username']=$Username;	 
- /* Перенаправление браузера */
-   header("Location: intropage.php");
-	}
-	} else {
-	//  $message = "Invalid username or password!";
-	
-	echo  "Invalid username or password!";
- }
-	} else {
-    $message = "All fields are required!";
-	}
-	}
-	?>
+
+
 <body>
 <table width="200" border="0" align="right">
   <tbody>

@@ -1,6 +1,9 @@
 <?php
  
 session_start();
+
+var_dump($_SESSION);
+die();
  
 if(!isset($_SESSION["session_Username"])):
 header("location:login.php");
