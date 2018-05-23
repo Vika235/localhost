@@ -2,11 +2,8 @@
  
 session_start();
 
-var_dump($_SESSION);
-die();
- 
 if(!isset($_SESSION["session_Username"])):
-header("location:login.php");
+header("Location: /login.php");
 else:
 ?>
 	
@@ -27,7 +24,6 @@ body {
 <h2>Добро пожаловать, <span><?php echo $_SESSION['session_Username'];?>! </span></h2>
   <p><a href="logout.php">Выйти</a> из системы</p>
 </div>
-	
-<?php include("includes/footer.php"); ?>
+
 	
 <?php endif; ?>

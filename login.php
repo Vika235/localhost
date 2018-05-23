@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("const.php");
 
 $con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
@@ -6,7 +7,7 @@ mysql_select_db(DB_NAME) or die("Cannot select DB");
 
 if(isset($_SESSION["session_Username"])){
     // вывод "Session is set"; // в целях проверки
-    header("Location: intropage.php");
+    header("Location: /intropage.php");
 }
 
 if(isset($_POST["login"])) {
@@ -23,7 +24,6 @@ if(isset($_POST["login"])) {
             }
             if ($Username == $dbUsername && $Password == $dbPassword) {
                 // старое место расположения
-                //  session_start();
                 $_SESSION['session_Username'] = $Username;
                 /* Перенаправление браузера */
                 header("Location: /intropage.php");
