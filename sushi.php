@@ -6,7 +6,7 @@
 <title></title>
 <style type="text/css">
 body {
-	background-image: url(image/fon.jpg);
+	background-image: url(image/fon1.jpg);
 }
 	
 </style>
@@ -44,9 +44,11 @@ body {
   <tbody>
     <tr>
       <td width="218" height="80"><p><img src="image/su1.jpg" width="172" height="119" alt=""/></p>
-      <p>&nbsp;</p></td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <p><img src="image/image (14).png" width="150" height="50" alt=""/></p></td>
+      <td><p><img src="image/Su2.jpg" width="176" height="151" alt=""/></p>
+      <p><img src="image/image (15).png" width="230" height="50" alt=""/></p></td>
+      <td><p><img src="image/Su3.jpg" width="183" height="161" alt=""/></p>
+      <p><img src="image/image (16).png" width="200" height="75" alt=""/></p></td>
     </tr>
   </tbody>
 </table>
