@@ -13,7 +13,7 @@ body {
 
 <body>
 <p>
-   <?php $db=mysql_connect("localhost", "root", "") or die ("Ошибка подключения к бд!".mysql_error());
+   <?php $db=mysql_connect("server.danshin.xyz", "delivery", "qazwsx") or die ("Ошибка подключения к бд!".mysql_error());
 	mysql_select_db("delivery", $db);
 	?></p>
 <table width="200" border="0" align="right">
