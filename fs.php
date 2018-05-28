@@ -13,8 +13,11 @@ body {
 
 <body>
 <p>
-   <?php $db=mysql_connect("localhost", "root", "") or die ("Ошибка подключения к бд!".mysql_error());
-	mysql_select_db("delivery", $db);
+   <?php
+   require("const.php");
+
+   $con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
+   mysql_select_db(DB_NAME) or die("Cannot select DB");
 	?>
 </p><table width="200" border="0" align="right">
   <tbody>
@@ -27,13 +30,10 @@ body {
   </tbody>
 </table>
 
-  </tbody>
-</table>
 <p><img src="image/logo.png" width="684" height="184" alt=""/></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-<body>
 </body>
 </html>

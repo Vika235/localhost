@@ -14,7 +14,6 @@ $query = mysql_query("SELECT * FROM district");
 
 $districts = mysql_fetch_assoc($query);
 
-die(var_dump($districts));
 
 ?>
 <!DOCTYPE html>
@@ -37,8 +36,10 @@ die(var_dump($districts));
     <select name="district" onchange="getval(this);">
         <option value="0">Выберите район</option>
         <?
-        foreach ($districts  as  $value)
-            echo "<option value=\"" . $value["id_district"] ."\">". $value["District_name"]. ". Цена - ".$value["Cost_of_delivery"]."</option> "
+        while($row = mysql_fetch_assoc($query)){
+            die(var_dump($row));
+            //echo "<option value=\"" . $row["id_district"] ."\">". $row["District_name"]. ". Цена - ".$row["Cost_of_delivery"]."</option> ";
+        }
         ?>
     </select>
 
@@ -47,32 +48,4 @@ die(var_dump($districts));
     <p><input type="submit"></p>
 </form>
 </body>
-
-<script>
-
-    function getval(sel)
-    {
-        $.ajax({
-            type: "POST",
-            url: "/getStreetsByDistrict.php",
-            // передача в качестве объекта
-            // поля будут закодированые через encodeURIComponent автоматически
-            data: {
-                district_id: sel.value,
-            },
-            success: function(msg){
-                $("select[name='street']").children().remove();
-
-                var json = JSON.parse(msg);
-
-                //if(!Array.isArray(json))
-                //
-
-                json.forEach(function(item) {
-                    $("select[name='street']").append(" <option value=\""+ item.id_street + "\">"+ item.name_street + "</option>");
-                });
-            }
-        });
-    }
-</script>
 </html>
