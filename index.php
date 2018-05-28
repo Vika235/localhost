@@ -13,8 +13,11 @@ body {
 
 <body>
 <p>
-   <?php $db=mysql_connect("server.danshin.xyz", "delivery", "qazwsx") or die ("Ошибка подключения к бд!".mysql_error());
-	mysql_select_db("delivery", $db);
+   <?php
+
+    require("const.php");
+   $con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
+   mysql_select_db(DB_NAME) or die("Cannot select DB");
 	?></p>
 <table width="200" border="0" align="right">
   <tbody>
@@ -22,7 +25,7 @@ body {
       <th width="58" height="35" scope="col"><a href="register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
       
       <th width="64" scope="col"><a href="login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
-      <th width="64" scope="col"><img src="image/basket.png" width="50" height="50" alt=""/></th>
+        <th width="64" scope="col"><a href="/basket.php"><img src="image/basket.png" width="50" height="50" alt=""/></a></th>
     </tr>
   </tbody>
 </table>

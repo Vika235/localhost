@@ -3,3 +3,34 @@ float:left;
 margin-left: 10 px;
 margin-top: 10 px;
 }
+
+.shop-item-table {
+    border: black solid 1px;
+}
+
+.shop-item-table-image-row
+{
+    height: 100px;
+}
+
+.shop-item-table-image-col{
+    width: 200px;
+}
+
+.shop-item-table-image-col > img{
+    height: 100px;
+    width: 200px;
+}
+
+.shop-item-table-title-col {
+    text-align: center;
+}
+
+.shop-item-table-desc-col {
+    width: 200px;
+    word-wrap: break-word;
+}
+
+.shop-item-table-buy-col {
+    text-align: right;
+}

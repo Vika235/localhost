@@ -14,10 +14,8 @@ body {
 <body>
 <p>
    <?php
-   require("const.php");
-
-   $con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
-   mysql_select_db(DB_NAME) or die("Cannot select DB");
+   $db=mysql_connect("localhost", "root", "") or die ("Ошибка подключения к бд!".mysql_error());
+	mysql_select_db("delivery", $db);
 	?>
 </p><table width="200" border="0" align="right">
   <tbody>
