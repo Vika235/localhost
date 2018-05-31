@@ -10,6 +10,7 @@ body {
 }
 	
 </style>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -109,7 +110,7 @@ echo <<<HTML
                     <td>
                          {$weight} {$unitsName}.
                     </td>
-                    <td rowspan="2"><a href="#">В корзину</a></td>
+                    <td rowspan="2"><a product-id="{$id}" class="add-to-basket-link" href="#">В корзину</a></td>
                 </tr>
                 <tr>
                     <td>
@@ -125,5 +126,30 @@ HTML;
     echo "</table>";
 
 ?>
+
+<script>
+    $( ".add-to-basket-link" ).click(function() {
+
+        $.ajax({
+            type: "POST",
+            url: "/addToBasket.php",
+            // передача в качестве объекта
+            // поля будут закодированые через encodeURIComponent автоматически
+            data: {
+                product_id: $(this).attr("product-id"),
+            },
+            success: function(msg){
+
+                alert(msg);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+               alert(xhr.status + ' ' + thrownError);
+            }
+
+        });
+
+
+    });
+</script>
 </body>
 </html>

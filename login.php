@@ -11,20 +11,36 @@ if(isset($_SESSION["session_Username"])){
 }
 
 if(isset($_POST["login"])) {
-
     if (!empty($_POST['Username']) && !empty($_POST['Password'])) {
         $Username = htmlspecialchars($_POST['Username']);
         $Password = htmlspecialchars($_POST['Password']);
         $query = mysql_query("SELECT * FROM customer WHERE username='" . $Username . "' AND password='" . $Password . "'");
         $numrows = mysql_num_rows($query);
         if ($numrows != 0) {
-            while ($row = mysql_fetch_assoc($query)) {
-                $dbUsername = $row['Username'];
-                $dbPassword = $row['Password'];
-            }
+            $row = mysql_fetch_assoc($query);
+            $dbUsername = $row['Username'];
+            $dbPassword = $row['Password'];
+
             if ($Username == $dbUsername && $Password == $dbPassword) {
                 // старое место расположения
                 $_SESSION['session_Username'] = $Username;
+                $_SESSION['session_UserEntity'] = $row;
+
+                //Поиск активного заказа
+                $query = mysql_query("SELECT
+                `order`.id_order
+                FROM
+                `order`
+                WHERE
+                `order`.id_status = 1 AND
+                `order`.id_customer = ". $row["id_customer"]);
+
+                if (mysql_num_rows($query) >= 1)
+                {
+                    $row = mysql_fetch_assoc($query);
+                    $_SESSION['session_UserOrder'] = $row["id_order"];
+                }
+
                 /* Перенаправление браузера */
                 header("Location: /intropage.php");
             }

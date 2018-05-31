@@ -2,17 +2,43 @@
 session_start();
 require("const.php");
 
-$con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
-mysql_select_db(DB_NAME) or die("Cannot select DB");
 
 //Проверка на логин
 if(!isset($_SESSION["session_Username"])){
     header("Location: /login.php");
+    die();
 }
 
-$query = mysql_query("SELECT * FROM district");
+//Проверка на заказ
+if(!isset($_SESSION["session_UserOrder"])){
+    header("Location: /");
+    die();
+} else {
+    $con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
+    mysql_select_db(DB_NAME) or die("Cannot select DB");
+}
 
-$districts = mysql_fetch_assoc($query);
+
+
+
+$total = 0;
+$query = mysql_query("SELECT
+basket.id_order,
+basket.id_product,
+basket.Amount,
+basket.Total,
+product.Product_name
+FROM
+basket
+INNER JOIN product ON basket.id_product = product.id_product
+WHERE
+basket.id_order = ". $_SESSION["session_UserOrder"]);
+
+while($row = mysql_fetch_assoc($query)){
+    $total += $row["Total"];
+}
+
+$districts = mysql_query("SELECT * FROM district");
 
 
 ?>
@@ -20,6 +46,7 @@ $districts = mysql_fetch_assoc($query);
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <link href="style.css" media="screen" rel="stylesheet">
     <link href="style2.css" media="screen" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'rel='stylesheet' type='text/css'>
     <style type="text/css">
@@ -31,20 +58,100 @@ $districts = mysql_fetch_assoc($query);
 </head>
 <body>
 
-<form action="handler.php">
 
-    <select name="district" onchange="getval(this);">
-        <option value="0">Выберите район</option>
-        <?
-        while($row = mysql_fetch_assoc($query)){
-            echo "<option value=\"" . $row["id_district"] ."\">". $row["District_name"]. ". Цена - ".$row["Cost_of_delivery"]."</option> ";
-        }
-        ?>
-    </select>
+<div class="container mlogin">
+<form id="checkout-form" action="doCheckout.php" method="post">
 
-    <input type="text" name="address"\>
+    <p>
+        <label for="district">Район<br>
+            <select name="district" onchange="getval(this);">
+                <option value="0">Выберите район</option>
+            </select>
+        </label>
+    </p>
 
-    <p><input type="submit"></p>
+
+
+    <p>
+        <label for="street">Улица(*)<br>
+            <input class="input" name="street" size="30"
+                   type="text" required="required" value="">
+        </label>
+    </p>
+
+    <p>
+        <label for="house">Дом(*)<br>
+            <input class="input" name="house" size="5"
+                   type="text" required="required" value="">
+        </label>
+    </p>
+
+
+    <p>
+        <label for="letter">Буква<br>
+            <input class="input" name="letter" size="1"
+                   type="text" value="">
+        </label>
+    </p>
+
+
+    <p>
+        <label for="floor">Этаж<br>
+            <input class="input" name="floor" size="2"
+                   type="text" value="">
+        </label>
+    </p>
+
+    <p>
+        <label for="room">Квартира(*)<br>
+            <input class="input" name="room" size="3"
+                   type="text" required="required" value="">
+        </label>
+    </p>
+
+    <table class="basket-table">
+        <tr class="basket-item-row">
+            <td class="basket-item-col-title">Итого</td>
+            <td class="basket-item-col-cost"><?= $total ?>р.</td>
+        </tr>
+    </table>
+
+
+    <a href="/doCheckout.php"><p class="submit"><input class="button" type= "submit" value="Заказать"></p></a>
 </form>
+</div>
+
+<script>
+    var total = <?= $total ?>;
+    var districts = {
+        <?
+        while($row = mysql_fetch_assoc($districts))
+            echo $row["id_district"]. ": { name: '".$row["District_name"]."', cost: '". $row["Cost_of_delivery"] ."' },";
+        ?>
+    };
+
+    for (var key in districts) {
+        $( "select[name='district']").append("<option value=\""+ key + "\">"+ districts[key].name + ". Цена - " + districts[key].cost + "р.</option>");
+    }
+
+    function getval(sel)
+    {
+        var value = sel.value;
+
+        if (value <= 0)
+            $(".basket-item-col-cost").text(total + "р.")
+        else
+            $(".basket-item-col-cost").text(total + " + " + districts[value].cost + " = " + (parseInt(total) + parseInt(districts[value].cost)) +"р.")
+    }
+
+    $( "#checkout-form" ).submit(function( event ) {
+        if ( $( "select[name='district']").val() === "0") {
+            alert("Ошибка. Не выбран район")
+            event.preventDefault();
+        }
+    });
+
+
+</script>
 </body>
 </html>

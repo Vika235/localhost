@@ -1,9 +1,3 @@
-#mainmenu li{
-float:left;
-margin-left: 10 px;
-margin-top: 10 px;
-}
-
 .shop-item-table {
     border: black solid 1px;
 }
@@ -34,3 +28,15 @@ margin-top: 10 px;
 .shop-item-table-buy-col {
     text-align: right;
 }
+
+.basket-table {
+    width: 100%;
+}
+.basket-item-col-title {
+    width: 80%;
+}
+
+.basket-item-col-cost{
+    text-align: right;
+}
+
