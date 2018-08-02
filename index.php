@@ -20,19 +20,15 @@ body {
    mysql_select_db(DB_NAME) or die("Cannot select DB");
 	?></p>
 <table width="200" border="0" align="right">
-  <tbody>
+    <tbody>
     <tr>
-      <th width="58" height="35" scope="col"><a href="register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
-      
-      <th width="64" scope="col"><a href="login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
+        <th width="58" height="35" scope="col"><a href="/register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
+        <th width="64" scope="col"><a href="/login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
         <th width="64" scope="col"><a href="/basket.php"><img src="image/basket.png" width="50" height="50" alt=""/></a></th>
     </tr>
-  </tbody>
+    </tbody>
 </table>
-
-  </tbody>
-</table>
-<p><img src="image/logo.png" width="684" height="184" alt=""/></p>
+<p><a href="/"><img src="image/logo.png" width="684" height="184" alt=""/></a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <table width="710" border="0" align="center">

@@ -74,16 +74,15 @@ body,td,th {
 
 <body>
 <table width="200" border="0" align="right">
-  <tbody>
+    <tbody>
     <tr>
-      <th width="58" height="35" scope="col"><a href="register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
-      
-      <th width="64" scope="col"><a href="login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
-      <th width="64" scope="col"><img src="image/basket.png" width="50" height="50" alt=""/></th>
+        <th width="58" height="35" scope="col"><a href="/register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
+        <th width="64" scope="col"><a href="/login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
+        <th width="64" scope="col"><a href="/basket.php"><img src="image/basket.png" width="50" height="50" alt=""/></a></th>
     </tr>
-  </tbody>
-  </table>
-<p><a href="index.php"><img src="image/logo.png" width="684" height="184" alt=""/></a></p>
+    </tbody>
+</table>
+<p><a href="/"><img src="image/logo.png" width="684" height="184" alt=""/></a></p>
 
 
 <div class="container mlogin">

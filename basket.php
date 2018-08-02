@@ -44,7 +44,7 @@ basket.id_order = ". $_SESSION["session_UserOrder"]);
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'rel='stylesheet' type='text/css'>
     <style type="text/css">
         body {
-            background-image: none;
+	background-image: url(image/fon1.jpg);
         }
     </style>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -53,14 +53,13 @@ basket.id_order = ". $_SESSION["session_UserOrder"]);
 <table width="200" border="0" align="right">
     <tbody>
     <tr>
-        <th width="58" height="35" scope="col"><a href="register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
-
-        <th width="64" scope="col"><a href="login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
-        <th width="64" scope="col"><img src="image/basket.png" width="50" height="50" alt=""/></th>
+        <th width="58" height="35" scope="col"><a href="/register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
+        <th width="64" scope="col"><a href="/login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
+        <th width="64" scope="col"><a href="/basket.php"><img src="image/basket.png" width="50" height="50" alt=""/></a></th>
     </tr>
     </tbody>
 </table>
-<p><a href="index.php"><img src="image/logo.png" width="684" height="184" alt=""/></a></p>
+<p><a href="/"><img src="image/logo.png" width="684" height="184" alt=""/></a></p>
 
 
 <div class="container mlogin">

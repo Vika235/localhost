@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+//Проверка на логин
+if(isset($_SESSION["session_Username"])){
+    header("Location: /");
+    die();
+} ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,12 +21,11 @@ body {
 	</head>
 	
 <?php
+
 	require("const.php");
  
 	$con = mysql_connect(DB_SERVER,DB_USER, DB_PASS) or die(mysql_error());
 	mysql_select_db(DB_NAME) or die("Cannot select DB");
-	?>
-<?php
 	
 	if(isset($_POST["register"])){
 	
@@ -52,30 +60,29 @@ if($numrows==0)
 	
 <body>
 <table width="200" border="0" align="right">
-  <tbody>
+    <tbody>
     <tr>
-      <th width="58" height="35" scope="col"><a href="register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
-      
-      <th width="64" scope="col"><a href="login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
-      <th width="64" scope="col"><img src="image/basket.png" width="50" height="50" alt=""/></th>
+        <th width="58" height="35" scope="col"><a href="/register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
+        <th width="64" scope="col"><a href="/login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
+        <th width="64" scope="col"><a href="/basket.php"><img src="image/basket.png" width="50" height="50" alt=""/></a></th>
     </tr>
-  </tbody>
-  </table>
-<p><a href="index.php"><img src="image/logo.png" width="684" height="184" alt=""/></a></p>
+    </tbody>
+</table>
+<p><a href="/"><img src="image/logo.png" width="684" height="184" alt=""/></a></p>
 <div class="container mregister">
 <div id="login">
  <h1>Registration</h1>
 <form action="register.php" id="registerform" method="post"name="registerform">
  <p><label for="user_login">Name<br>
- <input class="input" id="Name" name="Name" size="30"  type="text" value=""></label></p>
+ <input class="input" placeholder="Иван" id="Name" name="Name" size="30"  type="text" value=""></label></p>
 <p><label for="user_login">Surname<br>
-<input class="input" id="Surname" name="Surname" size="30" type="text" value=""></label></p>
+<input class="input" placeholder="Иванов" id="Surname" name="Surname" size="30" type="text" value=""></label></p>
 <p><label for="user_login">Phone<br>
-<input class="input" id="Phone_number" name="Phone_number" size="12" type="text" value=""></label></p>
+<input class="input" placeholder="+77879996655" id="Phone_number" name="Phone_number" size="12" type="text" value=""></label></p>
 <p><label for="user_pass">Login<br>
-<input class="input" id="Username" name="Username" size="30" type="text" value=""></label></p>
+<input class="input" placeholder="ivan" id="Username" name="Username" size="30" type="text" value=""></label></p>
 <p><label for="user_pass">Password<br>
-<input class="input" id="Password" name="Password" size="30"   type="password" value=""></label></p>
+<input class="input" placeholder="tTy76wn8" id="Password" name="Password" size="30"   type="password" value=""></label></p>
 <p class="submit"><input class="button" id="register" name= "register" type="submit" value="Registration"></p>
 	  <p class="regtext">Are you register already? <a href= "login.php">Enter login</a>!</p>
  </form>

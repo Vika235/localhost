@@ -57,6 +57,16 @@ $districts = mysql_query("SELECT * FROM district");
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<table width="200" border="0" align="right">
+    <tbody>
+    <tr>
+        <th width="58" height="35" scope="col"><a href="/register.php"><img src="image/adduser.png" width="50" height="50" alt=""/></a><br></th>
+        <th width="64" scope="col"><a href="/login.php"><img src="image/in.png" width="50" height="50" alt=""/></a></th>
+        <th width="64" scope="col"><a href="/basket.php"><img src="image/basket.png" width="50" height="50" alt=""/></a></th>
+    </tr>
+    </tbody>
+</table>
+<p><a href="/"><img src="image/logo.png" width="684" height="184" alt=""/></a></p>
 
 
 <div class="container mlogin">
@@ -74,14 +84,14 @@ $districts = mysql_query("SELECT * FROM district");
 
     <p>
         <label for="street">Улица(*)<br>
-            <input class="input" name="street" size="30"
+            <input class="input" placeholder="Пушкина" name="street" size="30"
                    type="text" required="required" value="">
         </label>
     </p>
 
     <p>
         <label for="house">Дом(*)<br>
-            <input class="input" name="house" size="5"
+            <input class="input" placeholder="9" name="house" size="5"
                    type="text" required="required" value="">
         </label>
     </p>
@@ -89,7 +99,7 @@ $districts = mysql_query("SELECT * FROM district");
 
     <p>
         <label for="letter">Буква<br>
-            <input class="input" name="letter" size="1"
+            <input class="input" placeholder="б" name="letter" size="1"
                    type="text" value="">
         </label>
     </p>
@@ -97,15 +107,23 @@ $districts = mysql_query("SELECT * FROM district");
 
     <p>
         <label for="floor">Этаж<br>
-            <input class="input" name="floor" size="2"
+            <input class="input" placeholder="1" name="floor" size="2"
                    type="text" value="">
         </label>
     </p>
 
     <p>
         <label for="room">Квартира(*)<br>
-            <input class="input" name="room" size="3"
+            <input class="input" placeholder="1" name="room" size="3"
                    type="text" required="required" value="">
+        </label>
+    </p>
+
+
+    <p>
+        <label for="comment">Комментарий к заказу<br>
+            <input class="input" name="comment" size="30"
+                   type="text" value="">
         </label>
     </p>
 
